@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Joao's Projects - Drone Defense Hackathon</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='hackathon.css'>
+</head>
+<body>
+
+  <div class="sidenav">
+    <img src="images/ppside.jpg" alt="Logo" style="width: auto; height: 100px;">
+    <a href="index.html#Aboutme"><p>About</p></a>
+    <a href="index.html#Projects"><p>Projects</p></a>
+    <a href="index.html#CV"><p>Links</p></a>
+  </div> 
+
+  <div class="project-presentation">
+    <h1>Drone Defense Hackathon</h1>
+    
+    <h2>Event Overview</h2>
+    <p>
+      In November 2025, I had the privilege of being selected as one of the <b>200 finalists</b> from a pool of over <b>800 applicants</b> 
+      to compete in the <b>AdoptAI</b> Hackathon over a slightly less than 3 days period. This prestigious event hosted the <b>Armed Forces</b> for a specific challenge 
+      titled <i>"Delivery in Crisis"</i>.
+      <br><br>
+      The goal was to design a robust, autonomous logistics system capable of operating in high-stress environments. 
+      Our team secured <b>3rd place</b> by engineering a comprehensive solution that addressed the entire supply chain, 
+      from the soldier on the field to the autonomous drone fleet.
+    </p>
+
+    <h2>The Challenge: Delivery in Crisis</h2>
+    <p>
+      The core of the challenge was to manage a fleet of drones to deliver supplies (medical kits, ammunition, rations) 
+      to various units deployed on the field. The environment was dynamic, requiring real-time adaptation to changing threats 
+      and urgent requests. We had to ensure:
+    </p>
+    <ul>
+      <li>Fast response times for critical requests.</li>
+      <li>Efficient mission allocation to available drones.</li>
+      <li>Safe trajectory planning to avoid obstacles and no-fly zones.</li>
+    </ul>
+
+    <h2>Our Solution Architecture</h2>
+    <p>
+      To solve this complex problem, we designed a three-layered architecture ensuring seamless communication 
+      between human operators and autonomous machines.
+    </p>
+
+    <h3>1. Field Unit Interface</h3>
+    <p>
+      The first layer is the "client" side. We designed a simplified interface for units on the ground. 
+      In a crisis situation, soldiers cannot type complex commands. Our GUI allows them to:
+    </p>
+    <ul>
+      <li>Request specific supplies with a single tap.</li>
+      <li>Broadcast their GPS position automatically.</li>
+      <li>Set the priority level of the request (Standard vs. Critical).</li>
+    </ul>
+    <div class="image-bloc">
+        <div class="image">
+          <video width="100%" height="auto" controls>
+            <source src="images/soldat_best.webm" type="video/webm">
+          </video>
+          <p class="caption"><i>Soldier's Interface Demonstration</i></p>
+        </div>
+    </div>
+
+    <p>
+      To go into technical detail, soldiers log into the application prior to deployment to authenticate their identity, 
+      unit, and rank. Once in the field, when a soldier needs to order supplies, the interface prioritizes items based 
+      on their specific role, while still allowing access to the full catalog if necessary.
+    </p>
+    <p>
+      Once the supplies are confirmed, the user proceeds to the planning screen. Here, they can set the order priority, 
+      choose between immediate delivery or a scheduled time, and finally select the delivery location. This can be done 
+      by tapping a position on the tactical map or by manually entering coordinates in their preferred format (MGRS, DMS, DD, etc.).
+    </p>
+    <p>
+      Additionally, to mitigate security risks—such as an enemy acquiring a lost device—we implemented a multi-factor authentication system. 
+      Each squad is assigned a rolling security code (changing daily, weekly, or monthly) required to confirm orders and access the unit's request history.
+    </p>
+
+    <h3>2. Logistics Command Dashboard</h3>
+    <p>
+      The second layer is the <b>Supervisory Dashboard</b> designed for the logistics operators. 
+      This central hub provides a global view of the theater of operations. It allows operators to:
+    </p>
+    <ul>
+      <li>Visualize all active units and drone positions in real-time.</li>
+      <li>Approve or deny incoming supply requests.</li>
+      <li>Monitor drone battery levels and status.</li>
+      <li>Override autonomous decisions if tactical intervention is needed.</li>
+    </ul>
+    <div class="image-bloc">
+        <div class="image">
+          <video width="100%" height="auto" controls>
+            <source src="images/log_best.webm" type="video/webm">
+          </video>
+          <p class="caption"><i>Logistics Command Dashboard Demonstration</i></p>
+        </div>
+    </div>
+
+    <p>
+      The dashboard was built with a focus on clarity and rapid decision-making. Operators can filter requests by priority,
+      view drone statuses at a glance, and receive alerts for any anomalies (e.g., low battery, communication loss). 
+      Crucially, the dashboard is designed to reduce the operator's cognitive load, enabling them to focus 
+      on critical decisions. The backend algorithms handle the majority of routine tasks and logistical calculations.
+    </p>
+    <p>
+      The right panel displays all pending missions with their priority levels and coordinates. 
+      By pressing the "auto-assign" button, the backend algorithms will efficiently allocate missions to available drones. 
+      If necessary, the operator can also drag and drop missions to specific drones or time slots; the system provides 
+      immediate warnings if a selected drone is unsuitable for the task. Finally on the left pannel, the operator can still have
+      a complete overview of the order history.
+    </p>
+
+    <h3>3. Algorithms & Real-Time Trajectory</h3>
+    <p>
+      The "brain" of our solution lies in the backend algorithms. We implemented advanced logic to handle the autonomy:
+    </p>
+    <ul>
+      <li><b>Mission Allocation:</b> An optimization algorithm that assigns the nearest available drone with sufficient battery and compatible specs to the highest priority request.</li>
+      <li><b>Real-Time Trajectory Planning:</b> A path-planning engine that calculates the safest route, dynamically updating to avoid static obstacles and dynamic threats defined by the command center.</li>
+    </ul>
+
+    <p>
+      We incorporated numerous parameters to ensure optimal algorithm performance. The system manages three distinct drone models, 
+      each with specific characteristics (payload, speed, range). The algorithm evaluates these constraints alongside environmental 
+      factors—such as weather conditions, terrain type (urban, forest, desert), travel distance, mission priority, and risk levels—to 
+      prevent deploying high-value assets on high-risk missions.
+    </p>
+    <p>
+      The simulation also accounts for hostile environments, including GNSS-denied zones, which the trajectory planning engine 
+      actively avoids. Strict No-Fly Zones (NFZ) were implemented; if a drone ceases telemetry transmission (indicating loss or destruction), 
+      the system automatically generates a dynamic NFZ around its last known coordinates to protect the remaining fleet.
+    </p>
+    <p>
+      Finally, the solution features multi-role versatility. If a drone determines it cannot complete its return trip due to 
+      damage or critical battery levels, it can switch to an offensive loitering munition mode to target enemy units rather 
+      than being lost in transit.
+    </p>
+
+    <h2>Results</h2>
+    <p>
+      Our solution was successfully demonstrated during the final presentation, showcasing a fully functional loop from a soldier's request to the drone's autonomous takeoff and pathfinding. 
+      The robustness of our <b>mission allocation algorithms</b> and the clarity of our <b>supervisory dashboard</b> were key factors in awarding us the <b>3rd place</b> podium finish.
+    </p>
+
+    <p>
+      Below is a comprehensive visual demonstration of the solution in action. The simulation depicts a standard military logistics 
+      scenario: 'GSD' represents the main base with full inventory, while 'TC1' and 'TC2' (Combat Trains) serve as forward supply points. 
+      TC1 offers basic necessities closer to the front, while the rear TC2 holds specialized equipment. Frontline units generate dynamic requests throughout the simulation.
+    </p>
+
+    <div class="image-bloc">
+        <div class="image">
+          <video width="100%" height="auto" controls>
+            <source src="images/demo_hackathon1.mp4" type="video/mp4">
+          </video>
+          <p class="caption"><i>Visual Demonstration and Complete Showcase</i></p>
+        </div>
+    </div>
+
+  </div>
+</body>
+</html>
