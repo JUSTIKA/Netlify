@@ -3,20 +3,20 @@
 <head>
   <meta charset='utf-8'>
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-  <title>Joao's Projects</title>
+  <title>Joao's Projects - First Bot</title>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <link rel='stylesheet' type='text/css' media='screen' href='firstbotstyle.css'>
+  <link rel="stylesheet" type="text/css" media="screen" href="style.css">
 </head>
 <body>
 
   <div class="sidenav">
-    <img src="images/ppside.jpg" alt="Logo" style="width: auto; height: 100px;">
+    <img src="images/ppside.jpg" alt="Logo">
     <a href="index.html#Aboutme"><p>About</p></a>
     <a href="index.html#Projects"><p>Projects</p></a>
     <a href="index.html#CV"><p>Links</p></a>
   </div> 
 
-  <d class="project-presentation">
+  <div class="project-presentation">
     <h1>FirstBot Project</h1>
     <h2>Introduction</h2>
     <p>
@@ -47,16 +47,18 @@
       on Fusion360 to finish the design.
       After assembling the robot, the final look was something like this :
     </p>
+    
     <div class="image-bloc">
       <div class="image">
-      <img src="images/robot.jpg" alt="First Bot" style="width: 40%; height: 70%;">
-      <p class="caption"><i>Our FirstRobot's final look</i></p>
+        <img src="images/robot.jpg" alt="First Bot">
+        <p class="caption"><i>Our FirstRobot's final look</i></p>
       </div>
       <div class="image">
-      <img src="images/frame.jpg" alt="Robot Frame" style="width: 40%; height: 70%;">
-      <p class="caption"><i>Robot frame design</i></p>
+        <img src="images/frame.jpg" alt="Robot Frame">
+        <p class="caption"><i>Robot frame design</i></p>
       </div>
     </div>
+
     <h3>Software and Technologies</h3>
     <p>
       The langage used for the project was Python, and the main libraries used were OpenCV and PyPot. OpenCV was used 
@@ -72,10 +74,14 @@
     the longest continuous line on the image and keep it. We decided to keep the first approach, which probably caused a couple 
     problems we'll mention later.
     </p>
-    <div class="image">
-      <img src="images/suiviligne.gif" alt="Line Following GIF" style="width: 420px; height: auto;">
-      <p class="caption"><i>video demonstrating the line-following capabilities</i></p>
+    
+    <div class="image-bloc">
+        <div class="image">
+          <img src="images/suiviligne.gif" alt="Line Following GIF">
+          <p class="caption"><i>video demonstrating the line-following capabilities</i></p>
+        </div>
     </div>
+
     <p>
       On the video above, we have a live feed of the camera mounted on the robot as he tries to follow the line. 
       The robot movements have been adapted with the image processing, we divided the image in six different parts, 
@@ -92,20 +98,22 @@
       border detection would have been more reliable. We still managed to make it work !
     </p>
     <h2>Circuit Results</h2>
+    
     <div class="image-bloc">
       <div class="image">
-      <video width="420" height="440" controls>
-        <source src="images/followblack.mp4" type="video/mp4">
-      </video>
-      <p class="caption"><i>Robot following the black line</i></p>
+        <video controls>
+            <source src="images/followblack.mp4" type="video/mp4">
+        </video>
+        <p class="caption"><i>Robot following the black line</i></p>
+      </div>
+      <div class="image">
+        <video controls>
+            <source src="images/followred.mp4" type="video/mp4">
+        </video>
+        <p class="caption"><i>Robot following the red line</i></p>
+      </div>
     </div>
-    <div class="image">
-      <video width="420" height="440" controls>
-        <source src="images/followred.mp4" type="video/mp4">
-      </video>
-      <p class="caption"><i>Robot following the red line</i></p>
-    </div>
-    </div>
+
     <h2>Odometry and Results</h2>
     <p>
       The MatMeca students worked on the robot's odometry and kinetics, and they managed to make the robot move in space, 
@@ -120,13 +128,14 @@
       <p>
         The final results were very satisfying and the robot was able to move in space to specific coordinates, and draw a fairly accurate map of the circuit.
       </p>
+      
       <div class="image-bloc">
         <div class="image">
-          <img src="images/Odometryline.jpg" alt="Odometry Line" style="width: 50%; height: 70%;">
+          <img src="images/Odometryline.jpg" alt="Odometry Line">
           <p class="caption"><i>Odometry line mapping</i></p>
         </div>
         <div class="image">
-          <video width="420" height="440" controls>
+          <video controls>
             <source src="images/odometrydemo.mp4" type="video/mp4">
           </video>
           <p class="caption"><i>Odometry demonstration video of the robot moving to (0,1) coordinates and facing 180°</i></p>
