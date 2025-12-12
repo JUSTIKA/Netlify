@@ -484,3 +484,138 @@ b {
         gap: 2rem;
     }
 }
+
+/* === 11. RESPONSIVE MOBILE & TABLET === */
+
+/* --- Tablet / Petit Laptop (max 1200px) --- */
+@media (max-width: 1200px) {
+    /* On empile la gauche (Projets) et la droite (Expérience) */
+    .main-split {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        max-width: 100%;
+        padding-right: 0;
+    }
+
+    /* On remet l'expérience en flux normal (plus de sticky) */
+    .Experience {
+        position: relative;
+        top: 0;
+        margin-top: 2rem;
+    }
+    
+    .projects-grid {
+        /* On garde 2 colonnes sur tablette si possible */
+        grid-template-columns: 1fr 1fr; 
+    }
+}
+
+/* --- Mobile (max 850px) --- */
+@media (max-width: 850px) {
+    
+    /* 1. NAVBAR FIXE & HORIZONTALE */
+    .sidenav {
+        width: 100%;
+        height: 70px; /* Hauteur fixe */
+        position: fixed; /* Reste collé en haut */
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        
+        flex-direction: row; /* Aligne l'image et les liens horizontalement */
+        justify-content: space-between;
+        align-items: center;
+        
+        padding: 0 1rem;
+        background: var(--sidebar-bg); 
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .sidenav img {
+        width: 50px;
+        height: 50px;
+        margin: 0;
+        border-width: 2px;
+    }
+
+    /* Liens de navigation */
+    .sidenav a {
+        width: auto;
+        padding: 0.5rem;
+        font-size: 0.9rem;
+        text-align: center;
+        border: none;
+        background: transparent;
+    }
+
+    .sidenav a:hover {
+        background-color: rgba(255,255,255,0.1);
+        padding-left: 0.5rem;
+        border-radius: 4px;
+    }
+    
+    .sidenav a p { 
+        display: inline-block; 
+        margin: 0;
+    } 
+
+    /* 2. AJUSTEMENT DU CONTENU PRINCIPAL */
+    .bloc_presentation, 
+    .Link-bloc, 
+    .project-presentation, 
+    .main-split {
+        margin-left: 0;
+        padding-top: 100px; /* Espace pour ne pas être caché par la barre */
+        padding-bottom: 3rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        width: 100%;
+    }
+
+    /* 3. TYPOGRAPHIE & GRILLES */
+    h1 { font-size: 2.2rem; word-wrap: break-word; }
+    h2 { font-size: 1.4rem; }
+    p { font-size: 1rem; }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .image-bloc {
+        grid-template-columns: 1fr; 
+    }
+    
+    .project {
+        padding: 1.5rem;
+    }
+
+    /* 4. LIENS DE CONTACT (FOOTER) - HORIZONTAL */
+    .link {
+        flex-direction: row; /* Force l'alignement horizontal */
+        flex-wrap: wrap;     /* Permet de passer à la ligne si l'écran est trop étroit */
+        justify-content: center; /* Centre les liens au milieu de l'écran */
+        gap: 2rem;
+    }
+    
+    /* 5. TIMELINE EXPÉRIENCE */
+    .exp-card {
+        padding-left: 1rem;
+    }
+    .exp-card::before {
+        left: -8px;
+    }
+}
+
+/* --- Très petits écrans (max 400px) --- */
+@media (max-width: 400px) {
+    .bloc_presentation {
+        min-height: auto; /* Évite les bugs de hauteur sur vieux mobiles */
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+}
