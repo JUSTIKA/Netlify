@@ -11,7 +11,7 @@
     --card-bg: #FFFFFF;          
     
     --sidebar-width: 280px;      
-    --content-max-width: 1100px; 
+    /* Pas de limite globale ici */
 }
 
 * {
@@ -75,6 +75,7 @@ body {
 .sidenav a p { 
     margin: 0; 
     color: inherit; 
+    font-size: inherit;
 }
 
 .sidenav a:hover {
@@ -84,48 +85,47 @@ body {
     color: white;
 }
 
-/* === 3. MAIN LAYOUT === */
+/* === 3. LAYOUT PRINCIPAL === */
 .bloc_presentation, 
-.Projects, 
 .Link-bloc, 
-.project-presentation {
+.project-presentation,
+.main-split {
     margin-left: var(--sidebar-width); 
     padding: 5rem 3rem;              
-    max-width: var(--content-max-width); 
-    margin-right: auto;               
+    max-width: none; 
+    width: auto;
+    margin-right: 0;               
 }
 
-/* === CENTERED PROJECT PAGES LAYOUT === */
-.project-presentation {
-    max-width: none;       
-    margin-right: 0;       
-    width: auto;           
-    display: flex;         
-    flex-direction: column;
-    align-items: center;   
+/* === STRUCTURE SPLIT (POSITIONNEMENT AJUSTÉ) === */
+.main-split {
+    display: grid;
+    grid-template-columns: 1fr 350px; 
+    gap: 4rem; 
+    align-items: start;
+    padding-top: 0; 
+    
+    /* MODIFICATION ICI : 1950px */
+    /* C'est le juste milieu entre 1750px (trop gauche) et illimité (trop droite) */
+    max-width: 1950px; 
 }
 
-.project-presentation > * {
-    width: 100%;
-    max-width: 900px; 
-}
-
-/* === 4. TYPOGRAPHY === */
+/* === 4. TYPOGRAPHIE === */
 h1 {
     font-size: 3.5rem;
     color: var(--sidebar-bg);
-    margin: 0 0 1rem 0;
+    margin: 0 0 1.5rem 0;
     line-height: 1.1;
     position: relative;
     display: block; 
 }
 
 h2 {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     color: var(--text-muted);
     font-weight: 600;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.8rem;
     border-bottom: 2px solid rgba(0,0,0,0.05);
     padding-bottom: 0.5rem;
     display: inline-block;
@@ -134,12 +134,12 @@ h2 {
 }
 
 h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--accent);
     font-weight: 400;
     font-style: italic;
     margin-top: 0;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 p, li {
@@ -161,10 +161,7 @@ b {
 
 /* === 5. HERO SECTION === */
 .bloc_presentation {
-    max-width: none;       
-    margin-right: 0;       
-    width: auto;           
-    min-height: 95vh; 
+    min-height: 85vh; 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -191,36 +188,27 @@ b {
     font-size: 1.25rem;
 }
 
-/* === 6. PROJECTS GRID & CARDS === */
+/* === 6. PROJECTS (GAUCHE) === */
 .Projects {
-    /* CENTERED LAYOUT OVERRIDE */
-    max-width: none;
-    margin-right: 0;
-    width: auto;
-    
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centers the Heading and the Grid container */
-    text-align: center;  /* Ensures the 'Projects' title is centered */
+    width: 100%;
+    min-width: 0; 
 }
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
-    gap: 2.5rem; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 2rem; 
     width: 100%;
-    
-    /* Limit the width of the grid so it stays nicely in the middle */
-    max-width: 1100px; 
-    
-    /* Reset text alignment so content INSIDE cards looks normal */
-    text-align: left;
+    /* Conserve la largeur max pour les cartes elles-mêmes */
+    max-width: 1300px; 
 }
 
 .project {
     background: var(--card-bg);
     border-radius: 12px;
-    padding: 2.5rem;
+    padding: 2.5rem; 
     box-shadow: 0 10px 30px rgba(119, 107, 93, 0.1); 
     border: 1px solid rgba(255,255,255,0.5);
     border-left: 6px solid var(--accent); 
@@ -248,7 +236,7 @@ b {
 }
 
 .project:hover {
-    transform: translateY(-7px); 
+    transform: translateY(-5px); 
     box-shadow: 0 20px 40px rgba(119, 107, 93, 0.15);
     border-left-color: var(--sidebar-bg); 
 }
@@ -295,7 +283,67 @@ b {
     z-index: 1;
 }
 
-/* === 7. LINKS / FOOTER === */
+/* === 7. EXPÉRIENCE PRO (DROITE) === */
+.Experience {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 2rem;
+}
+
+.exp-card {
+    background: transparent;
+    border-left: 2px solid rgba(119, 107, 93, 0.2);
+    padding: 0 0 2.5rem 1.5rem;
+    position: relative;
+}
+
+.exp-card::before {
+    content: '';
+    position: absolute;
+    left: -9px;
+    top: 6px;
+    width: 16px;
+    height: 16px;
+    background: var(--bg-color);
+    border: 3px solid var(--sidebar-bg);
+    border-radius: 50%;
+}
+
+.exp-card:last-child {
+    border-left: 2px solid transparent;
+}
+
+.exp-header {
+    margin-bottom: 0.5rem;
+}
+
+.exp-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--text-main);
+    font-weight: 700;
+    font-style: normal;
+}
+
+.exp-header span {
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block; 
+    margin-top: 0.2rem;
+}
+
+.exp-card p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+/* === 8. LIENS / FOOTER === */
 .Link-bloc {
     padding-bottom: 6rem;
 }
@@ -323,7 +371,7 @@ b {
 .link2 img { height: 60px; width: auto; margin-bottom: 15px; }
 .link2 h3 { font-style: normal; font-weight: 600; color: var(--text-main); margin: 0; }
 
-/* === 8. PROJECT PAGES === */
+/* === 9. PROJECT PAGES === */
 .image-bloc {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
@@ -361,7 +409,34 @@ b {
     font-style: italic;
 }
 
-/* === 9. RESPONSIVE MOBILE === */
+/* === 10. CENTERED PROJECT PAGES LAYOUT === */
+.project-presentation {
+    max-width: none;       
+    margin-right: 0;       
+    width: auto;           
+    display: flex;         
+    flex-direction: column;
+    align-items: center;   
+}
+
+.project-presentation > * {
+    width: 100%;
+    max-width: 900px; 
+}
+
+/* === 11. RESPONSIVE MOBILE === */
+@media (max-width: 1200px) {
+    /* Below 1200px, stack them vertically */
+    .main-split {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+        max-width: none; /* Relâche la limite sur petits écrans */
+    }
+    .Experience {
+        position: static;
+    }
+}
+
 @media (max-width: 850px) {
     .sidenav {
         width: 100%;
@@ -388,13 +463,17 @@ b {
     
     .sidenav a p { display: inline; } 
 
-    .bloc_presentation, .Projects, .Link-bloc, .project-presentation {
+    .bloc_presentation, .Link-bloc, .project-presentation, .main-split {
         margin-left: 0;
         padding: 3rem 1.5rem;
         max-width: 100%;
     }
 
     h1 { font-size: 2.5rem; }
+    
+    .projects-grid {
+        grid-template-columns: 1fr; 
+    }
     
     .image-bloc {
         grid-template-columns: 1fr; 
