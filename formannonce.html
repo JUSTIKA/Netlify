@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form'Annonce — Joao's Projects</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <aside class="sidenav">
+        <img src="images/ppside.jpg" alt="Logo">
+        <div class="sidenav-name">Joao F. Lopes</div>
+        <div class="sidenav-role">Robotics & Embedded AI</div>
+        <div class="sidenav-divider"></div>
+        <nav>
+            <a href="index.html#about" class="nav-link"><span class="nav-dot"></span> About</a>
+            <a href="index.html#projects" class="nav-link"><span class="nav-dot"></span> Projects</a>
+            <a href="index.html#experience" class="nav-link"><span class="nav-dot"></span> Experience</a>
+            <a href="index.html#links" class="nav-link"><span class="nav-dot"></span> Links</a>
+        </nav>
+        <div class="sidenav-footer">
+            <div class="sidenav-status">
+                <span class="status-dot"></span>
+                Open to opportunities
+            </div>
+        </div>
+    </aside>
+
+    <div class="project-presentation">
+
+        <h1>Form'Annonce</h1>
+
+        <h2>Overview</h2>
+        <p>
+            <b>Form'Annonce</b> is a B2B SaaS marketplace connecting French training organisations (<i>Organismes de Formation</i>) with independent trainers. It replaces the fragmented, Facebook-group-based recruitment process that dominates the sector with a structured, centralised platform.
+        </p>
+        <p>
+            Launched in March 2026, the platform reached <b>68+ users organically</b> in under a month — no paid advertising, purely through LinkedIn outreach and Facebook prospecting. It operates as a <b>PWA</b> (installable on mobile and desktop) and is currently 100% free during its growth phase.
+        </p>
+
+        <h2>The Problem</h2>
+        <p>
+            France has approximately 144,000 registered training organisations and 90,000 independent trainers, 65% of whom work as subcontractors for larger organisations. Recruitment was almost entirely done through Facebook groups, direct messages, and word of mouth — disorganised, slow, and with no standardised process.
+        </p>
+        <p>
+            Form'Annonce centralises mission postings, candidate applications, document management, and communication notifications into a single product built specifically for this sector.
+        </p>
+
+        <h2>Technical Architecture</h2>
+        <p>The stack was chosen for speed of iteration and zero infrastructure overhead:</p>
+        <ul>
+            <li><b>Frontend:</b> HTML, CSS, JS Vanilla — single-page application (SPA) with no framework, ES Modules via CDN. PWA with a Network First service worker.</li>
+            <li><b>Backend:</b> Firebase — Hosting, Authentication (Google OAuth + Email), Firestore, Storage, Cloud Functions (Node.js v1).</li>
+            <li><b>Emails:</b> Firebase Extension "Trigger Email" — all automated notifications (new application, accepted/refused status, weekly digest, mission closing) write to a <code>mail</code> collection that the extension processes.</li>
+            <li><b>Security:</b> Strict Firestore rules (emails never exposed client-side), HTML sanitisation on all inputs, CSP headers, HMAC-signed unsubscribe links.</li>
+        </ul>
+
+        <h2>Key Features</h2>
+        <ul>
+            <li>Mission posting system for training organisations with full filtering (domain, department, modality, dates).</li>
+            <li>Application flow for independent trainers — CV upload, motivation, LinkedIn, portfolio documents.</li>
+            <li>Automated email notifications at every step of the hiring pipeline.</li>
+            <li>Weekly digest emails to trainers (filtered by their domains of expertise) and to organisations (new active trainers count).</li>
+            <li>"Organisme Vérifié" badge — manually granted after SIRET/NDA verification, stamped on all published missions.</li>
+            <li>"Pionnier" badge — automatically awarded to the first 200 users as a founding member reward, visible on profiles and applications.</li>
+            <li>Admin dashboard with user management, analytics, and moderation tools.</li>
+            <li>Open Graph dynamic previews for mission sharing on LinkedIn and WhatsApp via a dedicated Cloud Function.</li>
+            <li>GDPR-compliant account deletion (cascading cleanup of Firestore documents and Storage files).</li>
+        </ul>
+
+        <h2>Traction & Business</h2>
+        <p>
+            Form'Annonce is in active growth phase. The platform has an active partnership with <b>FormDev</b> (900+ training organisation clients, 3,000 daily users), enabling direct integration and distribution. The acquisition strategy is currently 100% organic — LinkedIn posts, Facebook group prospecting, and word of mouth.
+        </p>
+        <p>
+            The planned monetisation model introduces a <b>Formateur Pro</b> subscription (priority listing, instant alerts, candidature analytics) and an <b>OF Pro</b> plan (unlimited missions, trainer database access, Qualiopi-ready PDF exports) once sufficient traction is established.
+        </p>
+        <p>
+            <a href="https://formannonce.fr" target="_blank"><b>Visit Form'Annonce → formannonce.fr</b></a>
+        </p>
+
+    </div>
+
+</body>
+</html>
