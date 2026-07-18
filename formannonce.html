@@ -34,15 +34,15 @@
 
         <h2>Overview</h2>
         <p>
-            <b>Form'Annonce</b> is a B2B SaaS marketplace connecting French training organisations (<i>Organismes de Formation</i>) with independent trainers. It replaces the fragmented, Facebook-group-based recruitment process that dominates the sector with a structured, centralised platform.
+            <b>Form'Annonce</b> is a B2B SaaS marketplace connecting French training organisations (<i>Organismes de Formation</i>) with independent trainers. Most of the sector still recruits through Facebook groups; Form'Annonce replaces that with a structured, centralised platform.
         </p>
         <p>
-            Launched in March 2026, the platform reached <b>68+ users organically</b> in under a month — no paid advertising, purely through LinkedIn outreach and Facebook prospecting. It operates as a <b>PWA</b> (installable on mobile and desktop) and is currently 100% free during its growth phase.
+            Launched in March 2026, the platform reached <b>130+ users organically</b> in under a month, with no paid advertising, just LinkedIn outreach and Facebook prospecting. It runs as a <b>PWA</b> (installable on mobile and desktop) and is currently free while it's still in its growth phase.
         </p>
 
         <h2>The Problem</h2>
         <p>
-            France has approximately 144,000 registered training organisations and 90,000 independent trainers, 65% of whom work as subcontractors for larger organisations. Recruitment was almost entirely done through Facebook groups, direct messages, and word of mouth — disorganised, slow, and with no standardised process.
+            France has approximately 144,000 registered training organisations and 90,000 independent trainers, 65% of whom work as subcontractors for larger organisations. Recruitment was almost entirely done through Facebook groups, direct messages, and word of mouth: disorganised, slow, and without any standardised process.
         </p>
         <p>
             Form'Annonce centralises mission postings, candidate applications, document management, and communication notifications into a single product built specifically for this sector.
@@ -51,20 +51,20 @@
         <h2>Technical Architecture</h2>
         <p>The stack was chosen for speed of iteration and zero infrastructure overhead:</p>
         <ul>
-            <li><b>Frontend:</b> HTML, CSS, JS Vanilla — single-page application (SPA) with no framework, ES Modules via CDN. PWA with a Network First service worker.</li>
-            <li><b>Backend:</b> Firebase — Hosting, Authentication (Google OAuth + Email), Firestore, Storage, Cloud Functions (Node.js v1).</li>
-            <li><b>Emails:</b> Firebase Extension "Trigger Email" — all automated notifications (new application, accepted/refused status, weekly digest, mission closing) write to a <code>mail</code> collection that the extension processes.</li>
+            <li><b>Frontend:</b> plain HTML, CSS and vanilla JS, no framework. Built as a single-page app with ES Modules loaded via CDN, and packaged as a PWA with a Network First service worker.</li>
+            <li><b>Backend:</b> Firebase, covering Hosting, Authentication (Google OAuth + Email), Firestore, Storage and Cloud Functions (Node.js v1).</li>
+            <li><b>Emails:</b> handled by the Firebase Extension "Trigger Email." All automated notifications (new application, accepted/refused status, weekly digest, mission closing) write to a <code>mail</code> collection that the extension picks up and sends.</li>
             <li><b>Security:</b> Strict Firestore rules (emails never exposed client-side), HTML sanitisation on all inputs, CSP headers, HMAC-signed unsubscribe links.</li>
         </ul>
 
         <h2>Key Features</h2>
         <ul>
             <li>Mission posting system for training organisations with full filtering (domain, department, modality, dates).</li>
-            <li>Application flow for independent trainers — CV upload, motivation, LinkedIn, portfolio documents.</li>
+            <li>Application flow for independent trainers, including CV upload, motivation letter, LinkedIn profile and portfolio documents.</li>
             <li>Automated email notifications at every step of the hiring pipeline.</li>
             <li>Weekly digest emails to trainers (filtered by their domains of expertise) and to organisations (new active trainers count).</li>
-            <li>"Organisme Vérifié" badge — manually granted after SIRET/NDA verification, stamped on all published missions.</li>
-            <li>"Pionnier" badge — automatically awarded to the first 200 users as a founding member reward, visible on profiles and applications.</li>
+            <li>"Organisme Vérifié" badge, granted manually after SIRET/NDA verification and stamped on all published missions.</li>
+            <li>"Pionnier" badge, awarded automatically to the first 200 users as a founding member reward and shown on their profiles and applications.</li>
             <li>Admin dashboard with user management, analytics, and moderation tools.</li>
             <li>Open Graph dynamic previews for mission sharing on LinkedIn and WhatsApp via a dedicated Cloud Function.</li>
             <li>GDPR-compliant account deletion (cascading cleanup of Firestore documents and Storage files).</li>
@@ -72,7 +72,7 @@
 
         <h2>Traction & Business</h2>
         <p>
-            Form'Annonce is in active growth phase. The platform has an active partnership with <b>FormDev</b> (900+ training organisation clients, 3,000 daily users), enabling direct integration and distribution. The acquisition strategy is currently 100% organic — LinkedIn posts, Facebook group prospecting, and word of mouth.
+            Form'Annonce is in an active growth phase. The platform has a partnership with <b>FormDev</b> (900+ training organisation clients, 3,000 daily users), which gives it direct integration and distribution. For now, growth stays entirely organic: LinkedIn posts, Facebook group prospecting and word of mouth.
         </p>
         <p>
             The planned monetisation model introduces a <b>Formateur Pro</b> subscription (priority listing, instant alerts, candidature analytics) and an <b>OF Pro</b> plan (unlimited missions, trainer database access, Qualiopi-ready PDF exports) once sufficient traction is established.
