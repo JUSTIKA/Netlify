@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>document.documentElement.classList.add("has-js");</script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joao Fernandes Lopes — Engineer</title>
+    <title>Joao Fernandes Lopes · Engineer</title>
     <meta name="description" content="Robotics & Embedded Systems Engineer specialised in drones, autonomous systems and AI.">
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon-32.png" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Joao Fernandes Lopes · Engineer">
+    <meta property="og:description" content="Robotics & Embedded Systems Engineer specialised in drones, autonomous systems and AI.">
+    <meta property="og:image" content="images/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Joao Fernandes Lopes · Engineer">
+    <meta name="twitter:description" content="Robotics & Embedded Systems Engineer specialised in drones, autonomous systems and AI.">
+    <meta name="twitter:image" content="images/og-image.jpg">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,16 +33,16 @@
         <div class="sidenav-divider"></div>
         <nav>
             <a href="#about" class="nav-link">
-                <span class="nav-dot"></span> About
+                About
             </a>
             <a href="#projects" class="nav-link">
-                <span class="nav-dot"></span> Projects
+                Projects
             </a>
             <a href="#experience" class="nav-link">
-                <span class="nav-dot"></span> Experience
+                Experience
             </a>
             <a href="#links" class="nav-link">
-                <span class="nav-dot"></span> Links
+                Links
             </a>
         </nav>
         <div class="sidenav-footer">
@@ -41,7 +56,7 @@
 
         <!-- HERO -->
         <section class="hero" id="about">
-            <div class="hero-eyebrow">Bordeaux, France · Available now</div>
+            <div class="hero-eyebrow">Bordeaux/Toulouse/Lille, France · Available now</div>
             <h1 class="hero-title">
                 Joao Fernandes<span>Lopes.</span>
             </h1>
@@ -55,7 +70,7 @@
                 <span class="hero-tag">Computer Vision</span>
                 <span class="hero-tag">Embedded Systems</span>
                 <span class="hero-tag">Drones</span>
-                <span class="hero-tag">YOLOv8</span>
+                <span class="hero-tag">YOLO</span>
                 <span class="hero-tag">PCB Design</span>
             </div>
             <div class="hero-bg-text">ENG</div>
@@ -69,10 +84,28 @@
             </div>
             <div class="about-grid">
                 <div class="about-text">
-                    <p>I am a <b>Junior Robotics Engineer</b> and recent graduate from the University of Bordeaux, holding a Master's degree with <b>High Honors</b> in Autonomous Systems — Perception, Interaction, and Control (ASPIC).</p>
+                    <p>I am a <b>Junior Robotics Engineer</b> and recent graduate from the University of Bordeaux, holding a Master's degree with <b>High Honors</b> in Autonomous Systems, Perception, Interaction, and Control (ASPIC).</p>
                     <p>From a young age, I have always bridged the gap between software and hardware. I consider myself a <b>dedicated</b> and <b>curious</b> engineer, passionate about the physical challenges of the real world.</p>
-                    <p>Beyond engineering, I build <b>digital products</b> — most notably Form'Annonce, a B2B SaaS platform connecting training organisations with independent trainers in France. I also offer <b>freelance consulting</b> in AI automation and Google Workspace integrations.</p>
+                    <p>Beyond engineering, I build <b>digital products</b>, most notably Form'Annonce, a B2B SaaS platform connecting training organisations with independent trainers in France. I also offer <b>freelance consulting</b> in AI automation and Google Workspace integrations.</p>
                     <p>When I'm not at a keyboard, I coach and compete in <b>semi-professional esports</b>, train in <b>powerlifting</b>, and explore cinema and Japanese animation.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-cell">
+                        <div class="stat-number">130+</div>
+                        <div class="stat-label">Form'Annonce users</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="stat-number">91%</div>
+                        <div class="stat-label">I2M R&D detection accuracy</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="stat-number">3rd</div>
+                        <div class="stat-label">AdoptAI Hackathon · 200 finalists</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="stat-number">M2</div>
+                        <div class="stat-label">High Honors, ASPIC · Univ. of Bordeaux</div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -86,16 +119,19 @@
 
             <div class="projects-grid">
 
-                <!-- Form'Annonce — featured -->
+                <!-- Form'Annonce · featured -->
                 <a href="formannonce.html" class="project-card featured reveal">
                     <div class="project-arrow">↗</div>
+                    <div class="project-visual project-visual--type">
+                        <span class="visual-wordmark">Form'<br>Annonce</span>
+                    </div>
                     <div class="project-body">
                         <div class="project-meta">
                             <span class="project-year">2026 — ongoing</span>
                             <span class="project-badge badge-new">Live · 130+ users</span>
                         </div>
                         <div class="project-title">Form'Annonce</div>
-                        <p class="project-desc">B2B SaaS platform connecting French training organisations (OF) with independent trainers. Built from scratch as a full-stack solo founder — Firebase, Firestore, Cloud Functions, PWA. Reached 130 users organically 2 months after launch plus 2 contractual partnerships.</p>
+                        <p class="project-desc">B2B SaaS platform connecting French training organisations (OF) with independent trainers. Built from scratch as a full-stack solo founder: Firebase, Firestore, Cloud Functions, PWA. Reached 130 users organically 2 months after launch plus 2 contractual partnerships.</p>
                         <div class="project-tags">
                             <span class="project-tag">Founder</span>
                             <span class="project-tag">Firebase</span>
@@ -110,12 +146,16 @@
                 <!-- Hackathon -->
                 <a href="hackathon.html" class="project-card reveal">
                     <div class="project-arrow">↗</div>
+                    <div class="project-visual" data-hover-media="video">
+                        <img class="visual-default" src="images/thumb_hackathon.jpg" width="900" height="553" loading="lazy" alt="Mission-control dashboard showing drone status and target queue from the AdoptAI hackathon demo">
+                        <video class="visual-alt" muted loop playsinline preload="none" data-src="images/log_best.webm" aria-hidden="true"></video>
+                    </div>
                     <div class="project-meta">
                         <span class="project-year">2025</span>
                         <span class="project-badge badge-3rd">3rd place</span>
                     </div>
                     <div class="project-title">Drone Defense Hackathon</div>
-                    <p class="project-desc">Selected as one of 200 finalists from 800+ applicants for the AdoptAI Hackathon — Armed Forces "Delivery in Crisis" challenge. Engineered a full autonomous drone logistics system with real-time trajectory planning.</p>
+                    <p class="project-desc">Selected as one of 200 finalists from 800+ applicants for the AdoptAI Hackathon, Armed Forces "Delivery in Crisis" challenge. Engineered a full autonomous drone logistics system with real-time trajectory planning.</p>
                     <div class="project-tags">
                         <span class="project-tag">Python</span>
                         <span class="project-tag">Algorithms</span>
@@ -127,12 +167,15 @@
                 <!-- Drone Porteur -->
                 <a href="DP.html" class="project-card reveal">
                     <div class="project-arrow">↗</div>
+                    <div class="project-visual">
+                        <img src="images/thumb_dp.jpg" width="352" height="317" loading="lazy" alt="DJI drone fitted with the custom 3D-printed release nacelle">
+                    </div>
                     <div class="project-meta">
                         <span class="project-year">2025</span>
                         <span class="project-badge">M2 Graduation</span>
                     </div>
                     <div class="project-title">Drone Porteur</div>
-                    <p class="project-desc">Master's graduation project — DJI Matrice 300 modified to carry and in-flight release smaller drones. Custom PCB design, 3D-printed basket, servo control via Pi Pico, full Python API control of DJI Tello Edu.</p>
+                    <p class="project-desc">Master's graduation project: DJI Matrice 300 modified to carry and in-flight release smaller drones. Custom PCB design, 3D-printed basket, servo control via Pi Pico, full Python API control of DJI Tello Edu.</p>
                     <div class="project-tags">
                         <span class="project-tag">Embedded</span>
                         <span class="project-tag">PCB Design</span>
@@ -144,11 +187,15 @@
                 <!-- RoboCup -->
                 <a href="rocobup.html" class="project-card reveal">
                     <div class="project-arrow">↗</div>
+                    <div class="project-visual">
+                        <img class="visual-default" src="images/thumb_robocup.jpg" width="900" height="562" loading="lazy" alt="YOLOv8 bounding boxes detecting the SSL robot and goal on the field">
+                        <img class="visual-alt" src="images/flowchart.png" width="1166" height="664" loading="lazy" alt="System architecture: camera feed through the custom YOLOv8 model to the robot controller">
+                    </div>
                     <div class="project-meta">
                         <span class="project-year">2024</span>
                         <span class="project-badge">Computer Vision</span>
                     </div>
-                    <div class="project-title">RoboCup SSL — VisionBlackOut</div>
+                    <div class="project-title">RoboCup SSL · VisionBlackOut</div>
                     <p class="project-desc">Autonomous vision system for a football robot in the SSL league without external cameras. YOLOv8 for object detection, custom control API, PyTorch training on custom dataset, real-time pathfinding.</p>
                     <div class="project-tags">
                         <span class="project-tag">YOLOv8</span>
@@ -161,11 +208,15 @@
                 <!-- First Bot -->
                 <a href="firstbot.html" class="project-card reveal">
                     <div class="project-arrow">↗</div>
+                    <div class="project-visual" data-hover-media="video">
+                        <img class="visual-default" src="images/thumb_firstbot.jpg" width="900" height="1200" loading="lazy" alt="The line-following robot prototype built with ENSEIRB MatMéca">
+                        <video class="visual-alt" muted loop playsinline preload="none" data-src="images/suivilignevideo.mp4" aria-hidden="true"></video>
+                    </div>
                     <div class="project-meta">
                         <span class="project-year">2024</span>
                         <span class="project-badge">Collaboration</span>
                     </div>
-                    <div class="project-title">FirstBot — Autonomous Line Follower</div>
+                    <div class="project-title">FirstBot · Autonomous Line Follower</div>
                     <p class="project-desc">Built in collaboration with ENSEIRB MatMéca. Designed the robot frame in CAD, implemented image processing with OpenCV for dual-line following (red and black), and integrated odometry for spatial mapping.</p>
                     <div class="project-tags">
                         <span class="project-tag">OpenCV</span>
@@ -196,13 +247,13 @@
                             <span class="timeline-period">Mar 2026 — present</span>
                         </div>
                     </div>
-                    <p class="timeline-desc">Built and launched Form'Annonce, a B2B SaaS marketplace connecting French training organisations with independent trainers. Sole developer — designed and shipped the full product (Firebase, Firestore, Cloud Functions, PWA, automated email system). Reached 130+ users organically in under a month with an active partnership with FormDev and Planor (900+ OF clients).</p>
+                    <p class="timeline-desc">Built and launched Form'Annonce, a B2B SaaS marketplace connecting French training organisations with independent trainers. Sole developer: designed and shipped the full product (Firebase, Firestore, Cloud Functions, PWA, automated email system). Reached 130+ users organically in under a month with an active partnership with FormDev and Planor (900+ OF clients).</p>
                 </div>
 
                 <div class="timeline-item reveal">
                     <div class="timeline-date-label">2026<br>present</div>
                     <div class="timeline-header">
-                        <div class="timeline-role">Freelance Consultant — AI & Automation</div>
+                        <div class="timeline-role">Freelance Consultant · AI & Automation</div>
                         <div class="timeline-meta">
                             <span class="timeline-company">Independent · Malt</span>
                             <span class="timeline-period">2026 — present</span>
@@ -214,7 +265,7 @@
                 <div class="timeline-item reveal">
                     <div class="timeline-date-label">Apr 2025<br>Sep 2025</div>
                     <div class="timeline-header">
-                        <div class="timeline-role">R&D Internship — Computer Vision & Robotics</div>
+                        <div class="timeline-role">R&D Internship · Computer Vision & Robotics</div>
                         <div class="timeline-meta">
                             <span class="timeline-company">I2M, Talence</span>
                             <span class="timeline-period">Apr 2025 — Sep 2025</span>
@@ -232,7 +283,7 @@
                             <span class="timeline-period">Jun 2022 — Jul 2022</span>
                         </div>
                     </div>
-                    <p class="timeline-desc">Contributed to the official company website — created 12 new pages and migrated the application framework from Svelte to React.</p>
+                    <p class="timeline-desc">Contributed to the official company website, creating 12 new pages and migrating the application framework from Svelte to React.</p>
                 </div>
 
             </div>
@@ -268,37 +319,120 @@
 
     <script>
         // Active nav link on scroll
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
+        try {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    navLinks.forEach(link => link.classList.remove('active'));
-                    const id = entry.target.id;
-                    const active = document.querySelector(`.nav-link[href="#${id}"]`);
-                    if (active) active.classList.add('active');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        const id = entry.target.id;
+                        const active = document.querySelector(`.nav-link[href="#${id}"]`);
+                        if (active) active.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            sections.forEach(s => observer.observe(s));
+        } catch (e) {
+            // Non-essential enhancement — fine if it doesn't run.
+        }
+
+        // Scroll reveal. Content is visible by default in CSS (see html.has-js
+        // rules in style.css) — this only adds the entrance animation, and
+        // always falls back to plainly revealing everything if anything here
+        // fails, so a slow/broken observer never leaves content hidden.
+        (function () {
+            const reveals = document.querySelectorAll('.reveal');
+            if (!reveals.length) return;
+
+            const revealAll = () => reveals.forEach(el => el.classList.add('visible'));
+            const fallbackTimer = setTimeout(revealAll, 2500);
+
+            try {
+                if (!('IntersectionObserver' in window)) { revealAll(); clearTimeout(fallbackTimer); return; }
+
+                const revealObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => entry.target.classList.add('visible'), 80);
+                            revealObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                reveals.forEach(el => revealObserver.observe(el));
+                clearTimeout(fallbackTimer);
+                // Safety net: if the observer stalls (tab backgrounded before
+                // first callback, etc.), reveal everything after a beat anyway.
+                setTimeout(revealAll, 2500);
+            } catch (e) {
+                revealAll();
+            }
+        })();
+
+        // Hover-to-play video previews on project cards. Desktop-with-a-mouse
+        // only, and skipped for reduced-motion users — the static thumbnail
+        // is always a complete fallback, this is pure enhancement.
+        (function () {
+            try {
+                const canHoverVideo = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+                    && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                if (!canHoverVideo) return;
+
+                document.querySelectorAll('.project-visual[data-hover-media="video"]').forEach((visual) => {
+                    const video = visual.querySelector('video.visual-alt');
+                    if (!video) return;
+                    let loaded = false;
+
+                    visual.addEventListener('mouseenter', () => {
+                        if (!loaded) { video.src = video.dataset.src; loaded = true; }
+                        video.currentTime = 0;
+                        video.play().catch(() => {});
+                    });
+                    visual.addEventListener('mouseleave', () => video.pause());
+                });
+            } catch (e) {
+                // Non-essential enhancement — the static thumbnail still shows.
+            }
+        })();
+
+        // Cursor-tracking tilt on project cards. Same guards as above.
+        (function () {
+            try {
+                const canTilt = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+                    && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                if (!canTilt) return;
+
+                const MAX_TILT = 5; // degrees
+                let ticking = false;
+                let card = null, x = 0, y = 0;
+
+                function applyTilt() {
+                    ticking = false;
+                    if (!card) return;
+                    const rect = card.getBoundingClientRect();
+                    const px = (x - rect.left) / rect.width - 0.5;
+                    const py = (y - rect.top) / rect.height - 0.5;
+                    const rotateY = (px * MAX_TILT * 2).toFixed(2);
+                    const rotateX = (-py * MAX_TILT * 2).toFixed(2);
+                    card.style.transform = `translateY(-3px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
                 }
-            });
-        }, { threshold: 0.3 });
 
-        sections.forEach(s => observer.observe(s));
-
-        // Scroll reveal
-        const reveals = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, i) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('visible');
-                    }, 80);
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        reveals.forEach(el => revealObserver.observe(el));
+                document.querySelectorAll('.project-card').forEach((el) => {
+                    el.addEventListener('mousemove', (e) => {
+                        card = el; x = e.clientX; y = e.clientY;
+                        if (!ticking) { ticking = true; requestAnimationFrame(applyTilt); }
+                    });
+                    el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+                });
+            } catch (e) {
+                // Non-essential enhancement.
+            }
+        })();
     </script>
+    <script src="command-palette.js" defer></script>
 
 </body>
 </html>

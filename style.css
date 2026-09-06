@@ -14,6 +14,16 @@
     --accent:       #D4C4A8;
     --accent-bright:#EDE0C8;
     --accent-glow:  rgba(200, 184, 154, 0.12);
+    --accent-border-weak: rgba(200, 184, 154, 0.2);
+    --accent-border: rgba(200, 184, 154, 0.25);
+    --accent-border-strong: rgba(200, 184, 154, 0.3);
+    --status-green:      #4ADE80;
+    --status-green-glow: rgba(74, 222, 128, 0.6);
+    --status-green-bg:   rgba(74, 222, 128, 0.1);
+    --status-green-border: rgba(74, 222, 128, 0.2);
+    --badge-amber:       #FBBF24;
+    --badge-amber-bg:    rgba(251, 191, 36, 0.1);
+    --badge-amber-border: rgba(251, 191, 36, 0.2);
     --sidebar-w:    260px;
     --radius:       12px;
     --transition:   0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -32,6 +42,30 @@ body {
     overflow-x: hidden;
 }
 
+/* Focus visibility for keyboard navigation */
+a:focus-visible,
+button:focus-visible,
+.project-card:focus-visible,
+.link-card:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Respect reduced-motion preference: collapse spatial motion to a fade */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .hero-eyebrow, .hero-title, .hero-subtitle, .hero-tags,
+    .project-card, .timeline-item {
+        transform: none !important;
+    }
+}
+
 /* Grain overlay subtil */
 body::before {
     content: '';
@@ -46,7 +80,7 @@ body::before {
 /* === SIDEBAR === */
 .sidenav {
     width: var(--sidebar-w);
-    height: 100vh;
+    height: 100dvh;
     position: fixed;
     top: 0; left: 0;
     background: var(--bg-2);
@@ -106,36 +140,27 @@ body::before {
 .sidenav nav a {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.65rem 1rem;
+    padding: 0.65rem 1rem 0.65rem calc(1rem - 2px);
     text-decoration: none;
     font-size: 0.82rem;
     font-weight: 500;
     color: var(--text-muted);
     border-radius: 8px;
-    transition: all var(--transition);
+    border-left: 2px solid transparent;
+    transition: color var(--transition), background var(--transition), border-color var(--transition);
     letter-spacing: 0.04em;
     position: relative;
-}
-
-.sidenav nav a .nav-dot {
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: var(--text-dim);
-    flex-shrink: 0;
-    transition: all var(--transition);
 }
 
 .sidenav nav a:hover,
 .sidenav nav a.active {
     color: var(--text-main);
     background: var(--accent-glow);
+    border-left-color: var(--accent);
 }
 
-.sidenav nav a:hover .nav-dot,
-.sidenav nav a.active .nav-dot {
-    background: var(--accent);
-    box-shadow: 0 0 8px var(--accent);
+.sidenav nav a.active {
+    font-weight: 700;
 }
 
 .sidenav-footer {
@@ -157,8 +182,8 @@ body::before {
 .status-dot {
     width: 7px; height: 7px;
     border-radius: 50%;
-    background: #4ADE80;
-    box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
+    background: var(--status-green);
+    box-shadow: 0 0 8px var(--status-green-glow);
     flex-shrink: 0;
     animation: pulse-green 2s ease-in-out infinite;
 }
@@ -171,12 +196,12 @@ body::before {
 /* === LAYOUT === */
 .main-content {
     margin-left: var(--sidebar-w);
-    min-height: 100vh;
+    min-height: 100dvh;
 }
 
 /* === HERO === */
 .hero {
-    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -239,7 +264,7 @@ body::before {
     border-radius: 100px;
     color: var(--text-muted);
     letter-spacing: 0.04em;
-    transition: all var(--transition);
+    transition: border-color var(--transition), color var(--transition), background var(--transition);
 }
 
 .hero-tag:hover {
@@ -356,6 +381,7 @@ body::before {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
+    perspective: 1000px;
 }
 
 .project-card {
@@ -367,14 +393,20 @@ body::before {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    transition: all var(--transition);
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
     position: relative;
     overflow: hidden;
-    opacity: 0;
-    transform: translateY(20px);
 }
 
-.project-card.visible {
+/* Reveal-on-scroll is progressive enhancement: cards are visible by default,
+   and only hidden pre-reveal once JS confirms it can un-hide them again. */
+html.has-js .project-card.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition), opacity var(--transition);
+}
+
+html.has-js .project-card.reveal.visible {
     opacity: 1;
     transform: translateY(0);
 }
@@ -385,11 +417,12 @@ body::before {
     inset: 0;
     background: linear-gradient(135deg, var(--accent-glow), transparent 60%);
     opacity: 0;
+    pointer-events: none;
     transition: opacity var(--transition);
 }
 
 .project-card:hover {
-    border-color: rgba(200, 184, 154, 0.25);
+    border-color: var(--accent-border);
     transform: translateY(-3px);
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
@@ -399,11 +432,76 @@ body::before {
 .project-card.featured {
     grid-column: span 2;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 2.5rem;
 }
 
 .project-card.featured .project-body { flex: 1; }
+
+/* === PROJECT VISUAL (card thumbnail) === */
+.project-visual {
+    position: relative;
+    margin: -2rem -2rem 0 -2rem;
+    aspect-ratio: 16 / 10;
+    background: var(--bg-2);
+    overflow: hidden;
+}
+
+.project-visual img,
+.project-visual video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--transition), opacity var(--transition);
+}
+
+.project-card:hover .project-visual img,
+.project-card:hover .project-visual video {
+    transform: scale(1.04);
+}
+
+/* Second layer (a demo video or an architecture diagram) crossfades in on
+   hover, desktop-with-a-mouse only — touch devices just keep the still. */
+.project-visual .visual-alt {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .project-visual:hover .visual-default {
+        opacity: 0;
+    }
+
+    .project-visual:hover .visual-alt {
+        opacity: 1;
+    }
+}
+
+.project-card.featured .project-visual {
+    flex: 0 0 320px;
+    margin: -2rem 0 -2rem -2rem;
+    aspect-ratio: auto;
+}
+
+.project-visual--type {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+.visual-wordmark {
+    font-family: "Syne", sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--accent-bright);
+    opacity: 0.85;
+}
 
 .project-meta {
     display: flex;
@@ -428,19 +526,19 @@ body::before {
     border-radius: 100px;
     background: var(--accent-glow);
     color: var(--accent);
-    border: 1px solid rgba(200, 184, 154, 0.2);
+    border: 1px solid var(--accent-border-weak);
 }
 
 .project-badge.badge-new {
-    background: rgba(74, 222, 128, 0.1);
-    color: #4ADE80;
-    border-color: rgba(74, 222, 128, 0.2);
+    background: var(--status-green-bg);
+    color: var(--status-green);
+    border-color: var(--status-green-border);
 }
 
 .project-badge.badge-3rd {
-    background: rgba(251, 191, 36, 0.1);
-    color: #FBbf24;
-    border-color: rgba(251, 191, 36, 0.2);
+    background: var(--badge-amber-bg);
+    color: var(--badge-amber);
+    border-color: var(--badge-amber-border);
 }
 
 .project-title {
@@ -485,7 +583,7 @@ body::before {
     justify-content: center;
     color: var(--text-muted);
     font-size: 0.8rem;
-    transition: all var(--transition);
+    transition: transform var(--transition), border-color var(--transition), color var(--transition);
     z-index: 2;
 }
 
@@ -513,12 +611,16 @@ body::before {
 .timeline-item {
     position: relative;
     padding-bottom: 3rem;
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: all 0.5s ease;
 }
 
-.timeline-item.visible {
+/* Reveal-on-scroll is progressive enhancement: see .project-card.reveal above. */
+html.has-js .timeline-item.reveal {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+html.has-js .timeline-item.reveal.visible {
     opacity: 1;
     transform: translateX(0);
 }
@@ -604,12 +706,12 @@ body::before {
     color: var(--text-muted);
     font-size: 0.9rem;
     font-weight: 500;
-    transition: all var(--transition);
+    transition: transform var(--transition), border-color var(--transition), color var(--transition), background var(--transition);
     min-width: 160px;
 }
 
 .link-card:hover {
-    border-color: rgba(200, 184, 154, 0.3);
+    border-color: var(--accent-border-strong);
     color: var(--text-main);
     background: var(--bg-2);
     transform: translateY(-2px);
@@ -629,6 +731,11 @@ body::before {
     .about-grid { grid-template-columns: 1fr; }
     .projects-grid { grid-template-columns: 1fr; }
     .project-card.featured { grid-column: span 1; flex-direction: column; }
+    .project-card.featured .project-visual {
+        flex: none;
+        aspect-ratio: 16 / 10;
+        margin: -2rem -2rem 0 -2rem;
+    }
 }
 
 @media (max-width: 900px) {
@@ -645,7 +752,6 @@ body::before {
     .sidenav-name, .sidenav-role, .sidenav-divider, .sidenav-footer { display: none; }
     .sidenav nav { flex-direction: row; padding: 0; gap: 0; }
     .sidenav nav a { padding: 0.5rem 0.75rem; font-size: 0.78rem; }
-    .sidenav nav a .nav-dot { display: none; }
 
     .main-content { margin-left: 0; padding-top: 60px; }
 
@@ -758,4 +864,143 @@ body::before {
 @media (max-width: 900px) {
     .project-presentation { margin-left: 0; padding: 2rem 1.5rem; padding-top: 80px; }
     .project-presentation h1 { font-size: 2rem; }
+}
+
+/* === COMMAND PALETTE === */
+.cmdk-trigger {
+    display: block;
+    margin-top: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: border-color var(--transition), color var(--transition);
+    text-align: left;
+}
+
+.cmdk-trigger:hover {
+    border-color: var(--accent);
+    color: var(--text-main);
+}
+
+.cmdk-trigger kbd {
+    float: right;
+    font-family: inherit;
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.05rem 0.35rem;
+}
+
+.cmdk-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 2000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 12vh;
+}
+
+.cmdk-overlay[hidden] { display: none; }
+
+.cmdk-panel {
+    width: min(560px, 90vw);
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.cmdk-input-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.cmdk-icon {
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+}
+
+.cmdk-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.cmdk-input::placeholder { color: var(--text-dim); }
+
+.cmdk-list {
+    list-style: none;
+    max-height: 50vh;
+    overflow-y: auto;
+    padding: 0.5rem;
+    margin: 0;
+}
+
+.cmdk-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.65rem 0.75rem;
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.cmdk-item .cmdk-hint {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+.cmdk-item.is-active {
+    background: var(--accent-glow);
+    color: var(--text-main);
+}
+
+.cmdk-item.is-active .cmdk-hint { color: var(--accent); }
+
+.cmdk-empty {
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+}
+
+.cmdk-footer {
+    display: flex;
+    gap: 1rem;
+    padding: 0.6rem 1.25rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+}
+
+@media (max-width: 900px) {
+    .cmdk-trigger { display: none; }
 }
