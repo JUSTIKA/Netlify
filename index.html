@@ -7,12 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joao Fernandes Lopes · Engineer</title>
     <meta name="description" content="Robotics & Embedded Systems Engineer specialised in drones, autonomous systems and AI.">
+    <link rel="canonical" href="https://joaofl-portfolio.netlify.app/">
 
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="alternate icon" href="favicon-32.png" type="image/png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://joaofl-portfolio.netlify.app/">
     <meta property="og:title" content="Joao Fernandes Lopes · Engineer">
     <meta property="og:description" content="Robotics & Embedded Systems Engineer specialised in drones, autonomous systems and AI.">
     <meta property="og:image" content="images/og-image.jpg">
@@ -398,39 +400,27 @@
             }
         })();
 
-        // Cursor-tracking tilt on project cards. Same guards as above.
+        // Suppress card hover while actively scrolling (see .is-scrolling in
+        // style.css) — otherwise cards passing under a motionless cursor
+        // during a scroll gesture pick up real :hover matches and each one
+        // animates a non-composited box-shadow, which is what made scrolling
+        // past the cards crawl.
         (function () {
             try {
-                const canTilt = window.matchMedia('(hover: hover) and (pointer: fine)').matches
-                    && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-                if (!canTilt) return;
-
-                const MAX_TILT = 5; // degrees
-                let ticking = false;
-                let card = null, x = 0, y = 0;
-
-                function applyTilt() {
-                    ticking = false;
-                    if (!card) return;
-                    const rect = card.getBoundingClientRect();
-                    const px = (x - rect.left) / rect.width - 0.5;
-                    const py = (y - rect.top) / rect.height - 0.5;
-                    const rotateY = (px * MAX_TILT * 2).toFixed(2);
-                    const rotateX = (-py * MAX_TILT * 2).toFixed(2);
-                    card.style.transform = `translateY(-3px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                }
-
-                document.querySelectorAll('.project-card').forEach((el) => {
-                    el.addEventListener('mousemove', (e) => {
-                        card = el; x = e.clientX; y = e.clientY;
-                        if (!ticking) { ticking = true; requestAnimationFrame(applyTilt); }
-                    });
-                    el.addEventListener('mouseleave', () => { el.style.transform = ''; });
-                });
+                let scrollTimer = null;
+                window.addEventListener('scroll', () => {
+                    if (!scrollTimer) document.body.classList.add('is-scrolling');
+                    clearTimeout(scrollTimer);
+                    scrollTimer = setTimeout(() => {
+                        document.body.classList.remove('is-scrolling');
+                        scrollTimer = null;
+                    }, 150);
+                }, { passive: true });
             } catch (e) {
-                // Non-essential enhancement.
+                // Non-essential enhancement — worst case, hover-during-scroll returns.
             }
         })();
+
     </script>
     <script src="command-palette.js" defer></script>
 

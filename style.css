@@ -381,7 +381,6 @@ body::before {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
-    perspective: 1000px;
 }
 
 .project-card {
@@ -428,6 +427,15 @@ html.has-js .project-card.reveal.visible {
 }
 
 .project-card:hover::after { opacity: 1; }
+
+/* Scrolling re-hits-tests what's under a stationary cursor, so cards passing
+   underneath during a scroll gesture get genuine (but unintended) :hover
+   matches — each one animates the non-composited box-shadow above and can
+   fire back-to-back for every card scrolled past, tanking frame rate. Toggled
+   by a scroll listener in index.html's inline script. */
+body.is-scrolling .project-card {
+    pointer-events: none;
+}
 
 .project-card.featured {
     grid-column: span 2;
