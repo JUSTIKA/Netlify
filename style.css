@@ -478,11 +478,15 @@ body.is-scrolling .project-card {
 }
 
 @media (hover: hover) and (pointer: fine) {
-    .project-visual:hover .visual-default {
+    /* Keyed to the whole card, like the zoom rule above, not just the visual
+       box — on the featured card the visual is a narrow side column, so
+       requiring the cursor to be over it specifically meant hovering the
+       title/description (most of the card's area) did nothing. */
+    .project-card:hover .visual-default {
         opacity: 0;
     }
 
-    .project-visual:hover .visual-alt {
+    .project-card:hover .visual-alt {
         opacity: 1;
     }
 }
